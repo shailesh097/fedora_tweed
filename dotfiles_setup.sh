@@ -18,6 +18,7 @@ setup_dotfiles(){
       mv "$TARGET_DIR" "$BACKUP_DIR"
   fi
 
+  mkdir -p "$TARGET_DIR"
   # Clone the repository into a new dotfiles folder
   git clone "$REPO_URL" "$TARGET_DIR"
 

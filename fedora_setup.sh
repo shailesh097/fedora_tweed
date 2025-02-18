@@ -113,12 +113,12 @@ setup_fedora(){
 # change wallpaper every 5 minutes
 install_wallpaper_changer(){
   info "Installing Wallpaper Changer service..."
-  SERVICES_DIR="$HOME/.config/systemd/user/"
-  SCRIPT_DIR="$HOME/.config/myscripts/"
+  local SERVICES_DIR="$HOME/.config/systemd/user/"
+  local SCRIPT_DIR="$HOME/.config/myscripts/"
   mkdir -p "$SERVICES_DIR"
   mkdir -p "$SCRIPT_DIR"
-  cp "$HOME/setup_files/SetupLinux/services/wallpaper-changed.service" "$SERVICES_DIR" 
-  cp "$HOME/setup_files/SetupLinux/dynamic_wallpaper.sh" "$SCRIPT_DIR"
+  cp "$HOME/git_clone/fedora-gnome-setup/SetupLinux/services/wallpaper-changed.service" "$SERVICES_DIR" 
+  cp "$HOME/git_clone/fedora-gnome-setup/SetupLinux/dynamic_wallpaper.sh" "$SCRIPT_DIR"
   systemctl --user daemon-reload
   systemctl --user enable wallpaper-changed.service
   systemctl --user start wallpaper-changed.service
