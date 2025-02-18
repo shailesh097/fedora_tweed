@@ -1,0 +1,191 @@
+#!/bin/bash
+
+#function to setup fedora
+setup_fedora(){
+  # Ensure defaultyes=True is set
+  if ! grep -q "^defaultyes=True" /etc/dnf/dnf.conf; then
+    echo "defaultyes=True" | sudo tee -a /etc/dnf/dnf.conf > /dev/null
+  fi
+
+  # Ensure max_parallel_downloads=10 is set
+  if ! grep -q "^max_parallel_downloads=10" /etc/dnf/dnf.conf; then
+    echo "max_parallel_downloads=10" | sudo tee -a /etc/dnf/dnf.conf > /dev/null
+  fi
+  
+  info "Setting up Fedora system..."
+
+  # Setup power profile for gnome system
+  setup_power_gnome
+
+  #update the system
+  sudo dnf update -y
+  completed "System Updated"
+
+  #enable rpm fusion repository
+  info "Enabling RPM Fusion repositories..."
+  sudo dnf install -y \
+      https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+      https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+  #enable flatpak repository
+  info "Enabling Flatpak Repositories.."
+  sudo dnf install -y flatpak
+  flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+  #install eDM Mononstall curl wget git neovim fzf conky kitty fish nvtop btop
+  info "Installing Essential Tools..."
+  sudo dnf install -y curl wget git neovim fzf conky kitty fish nvtop btop fastfetch npm eza gnome-tweaks gnome-shell-extensions discord vlc gparted
+
+  # Set Catppuccin-Mocha theme for kitty
+  info "Setting Catppuccin-Mocha theme for kitty..."
+  kitty +kitten themes Catppuccin-Mocha
+
+  #configure git
+  info "Configuring git..."
+  git config --global user.name "shailesh097"
+  git config --global user.email "sailesh.pokharel.234@gmail.com"
+
+  # Install nvchad
+  info "Installing Nvchad..."
+  git clone https://github.com/NvChad/starter ~/.config/nvim
+
+  #install flatpak apps
+  #install extension manager
+  info "Installing ExtensionManager..."
+  flatpak install -y flathub com.mattjakeman.ExtensionManager
+
+  #setup dotfiles from github
+  setup_dotfiles
+
+  # Install Visual Studio Code
+  install_vscode
+
+  # Install Brave Browser
+  install_brave
+
+  # Install starship prompt
+  # Initialize copr repository
+  info "Installing Starship Prompt..."
+  sudo dnf copr enable atim/starship -y
+  sudo dnf install -y starship
+
+  # Installed sublime text
+  install_sublimetext4
+
+  # Install Obsidian
+  info "Installing Obsidian via Flatpak..."
+  flatpak install -y flathub md.obsidian.Obsidian
+
+  # Install Flatpak
+  info "Installing Spotify via Flatpak..."
+  flatpak install -y flathub com.spotify.Client
+
+  info "Installing X11..."
+  sudo dnf install -y gnome-session-xsession
+  sudo dnf install -y gnome-classic-session-xsession
+
+  # Enable minimize and maximize buttons on titlebar
+  info "Enabling maximize and minimize buttons in titlebar..."
+  gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
+
+  # Setup wallpaper changer
+  install_wallpaper_changer
+
+  # Setup Keyboard Shortcuts
+  gnome_keyboard_shortcut
+
+  # Install Nvidia Drivers
+  install_nvidia_drivers
+
+    read -p "Do you want to reboot now? (y/n): " REBOOT
+  if [[ "$REBOOT" == "y" || "$REBOOT" == "Y" ]]; then
+      sudo reboot
+  else
+      info "Please reboot your system later to apply the changes."
+  fi
+
+  # Changin shell to fish
+  chsh -s /usr/bin/fish
+
+  completed "Fedora Setup Complete!"
+}
+
+# change wallpaper every 5 minutes
+install_wallpaper_changer(){
+  info "Installing Wallpaper Changer service..."
+  SERVICES_DIR="$HOME/.config/systemd/user/"
+  SCRIPT_DIR="$HOME/.config/myscripts/"
+  mkdir -p "$SERVICES_DIR"
+  mkdir -p "$SCRIPT_DIR"
+  cp "$HOME/setup_files/SetupLinux/services/wallpaper-changed.service" "$SERVICES_DIR" 
+  cp "$HOME/setup_files/SetupLinux/dynamic_wallpaper.sh" "$SCRIPT_DIR"
+  systemctl --user daemon-reload
+  systemctl --user enable wallpaper-changed.service
+  systemctl --user start wallpaper-changed.service
+}
+
+# functionto install nvidia drivers for fedora
+install_nvidia_drivers(){
+  info "Installing Nvidia Driver"
+  sudo dnf update -y
+  sudo dnf install -y akmod-nvidia
+  info "NVIDIA drivers installed successfully!"
+  info "A reboot is required to load the NVIDIA drivers"
+  info "Close all the files and reboot your system"
+}
+
+
+# function to install sublime text 4
+install_sublimetext4(){
+
+  info "Installing Sublime Text 4..."
+  # Get the Fedora version
+  FEDORA_VERSION=$(rpm -E %fedora)
+
+  # install gpg key
+  sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
+
+  # Check which version of dnf to use based on Fedora version
+  if [ "$FEDORA_VERSION" -le 40 ]; then
+      sudo dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+  else
+      sudo dnf config-manager addrepo --from-repofile=https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+  fi
+
+  sudo dnf install sublime-text -y
+}
+
+# function to install brave-browser
+install_brave(){
+  info "Installing Brave Browser..."
+  # Get the Fedora version
+  FEDORA_VERSION=$(rpm -E %fedora)
+
+  sudo dnf install -y dnf-plugins-core
+  # Check which version of dnf to use based on Fedora version
+  if [ "$FEDORA_VERSION" -le 40 ]; then
+      sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+  else
+      sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+  fi
+
+  sudo dnf install -y brave-browser
+}
+
+#function to install vscode
+install_vscode(){
+  info "Installing Visual Studio Code..."
+  sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+  sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+  sudo dnf check-update
+  sudo dnf install -y code
+
+  if [ $? -eq 0 ]; then
+      completed "Visual Studio Code installed successfully!"
+  else
+      error "Failed to install Visual Studio Code. Please check your internet connection or repository setup."
+      exit 1
+  fi
+}
+
+
