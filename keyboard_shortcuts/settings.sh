@@ -17,10 +17,7 @@ remove_quick_settings_shortcut(){
 
   # Verify the change
   local NEW_BINDING=$(gsettings get "$SCHEMA" "$KEY")
-
-  echo "Shortcut for Quick Settings (Super+S) has been removed."
 }
-
 
 remove_quick_settings_shortcut
 custom_shortcut "Settings" "gnome-control-center" "<super>s"
