@@ -29,24 +29,10 @@ completed() {
   printf '%s\n' "${GREEN}✓ $* ${NO_COLOR} "
 }
 
-remove_quick_settings_shortcut(){
-  # Define the schema and keybinding path
-  SCHEMA="org.gnome.shell.keybindings"
-  KEY="toggle-quick-settings"
+mylist=("value2" "value3")
+append="value4"
 
-  # Check the current keybinding
-  CURRENT_BINDING=$(gsettings get "$SCHEMA" "$KEY")
+newlist=${mylist[@]/), $append/)}
 
-  echo "Current binding for Quick Settings: $CURRENT_BINDING"
+info ${newlist[@]}
 
-  # Remove the shortcut by setting it to an empty array
-  gsettings set "$SCHEMA" "$KEY" "[]"
-
-  # Verify the change
-  NEW_BINDING=$(gsettings get "$SCHEMA" "$KEY")
-  echo "New binding for Quick Settings: $NEW_BINDING"
-
-  echo "Shortcut for Quick Settings (Super+S) has been removed."
-}
-
-remove_quick_settings_shortcut
