@@ -2,37 +2,24 @@
 # This script adds a custom GNOME keyboard shortcut to launch kitty
 # Shortcut: Super+Return
 
-
-custom_shortcut() {
+custom_shortcut(){
   # Define variables
   local KEYBINDING_NAME="$1"
   local KEYBINDING_COMMAND="$2"
   local KEYBINDING_BINDING="$3"
-  local KEYBINDING_PATH="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/$KEYBINDING_COMMAND"
+  local KEYBINDING_PATH="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/kitty/"
 
-  # Get current list of custom keybindings
+  # Get current list of custom keybindings (a GVariant string, e.g. "[]", or "['/some/path/']")
   local current_bindings=$(gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings)
-  local new_bindings
 
-  # Remove surrounding single quotes
-  # current_bindings=${current_bindings//\'/}
-
-  # Ensure it's a valid list, otherwise initialize as an empty list
-  if [[ "$current_bindings" == "@as []" ]]; then
-    current_bindings="[]"
-  fi
-
-  # Check if the keybinding is already in the list
+  # Append our new keybinding if it's not already in the list.
   if [[ "$current_bindings" != *"$KEYBINDING_PATH"* ]]; then
-      new_bindings="${current_bindings/]/, '$KEYBINDING_PATH']}"
-    else
-      echo "Custom keybinding of $KEYBINDING_COMMAND has already been set. Please edit or remove $KEYBINDING_PATH"
+      # Use python3 to convert the string to a list, append our path, and output the new list.
+      local new_bindings=$(python3 -c "import ast,sys; arr = ast.literal_eval(sys.argv[1]); arr.append('$KEYBINDING_PATH'); print(arr)" "$current_bindings")
+      gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "$new_bindings"
   fi
 
-  # Apply the updated keybindings
-  gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "$new_bindings"
-
-  # Configure the keybinding properties
+  # Now configure the keybinding properties
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:"$KEYBINDING_PATH" name "$KEYBINDING_NAME"
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:"$KEYBINDING_PATH" command "$KEYBINDING_COMMAND"
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:"$KEYBINDING_PATH" binding "$KEYBINDING_BINDING"
@@ -40,5 +27,4 @@ custom_shortcut() {
   echo "Custom shortcut set: $KEYBINDING_BINDING will launch $KEYBINDING_NAME"
 }
 
-custom_shortcut "Brave" "brave-browser" "<super>b"
-custom_shortcut "Kitty" "kitty" "<super>Return"
+custom_shortcut "Brave" "brave" "<super>b"
