@@ -12,9 +12,11 @@ change_workspace(){
   gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "['<Shift><Super>bracketleft']"
   gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "['<Shift><Super>bracketright']"
 
-  info "Custom shortcuts set:"
-  info "  - Super+[ to switch to previous workspace"
-  info "  - Super+] to switch to next workspace"
-  info "  - Shift+Super+[ to move current window 1 workspace to the left"
-  info "  - Shift+Super+] to move current window 1 workspace to the right"
+  echo "Custom shortcuts set:"
+  echo "  - Super+[ to switch to previous workspace"
+  echo "  - Super+] to switch to next workspace"
+  echo "  - Shift+Super+[ to move current window 1 workspace to the left"
+  echo "  - Shift+Super+] to move current window 1 workspace to the right"
 }
+
+change_workspace

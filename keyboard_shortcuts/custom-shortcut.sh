@@ -7,10 +7,14 @@ custom_shortcut(){
   local KEYBINDING_NAME="$1"
   local KEYBINDING_COMMAND="$2"
   local KEYBINDING_BINDING="$3"
-  local KEYBINDING_PATH="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/kitty/"
+  local KEYBINDING_PATH="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/$KEYBINDING_COMMAND/"
 
   # Get current list of custom keybindings (a GVariant string, e.g. "[]", or "['/some/path/']")
   local current_bindings=$(gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings)
+
+  if [[ "$current_bindings" == "@as []" ]]; then
+    current_bindings="[]"
+  fi
 
   # Append our new keybinding if it's not already in the list.
   if [[ "$current_bindings" != *"$KEYBINDING_PATH"* ]]; then
@@ -28,3 +32,5 @@ custom_shortcut(){
 }
 
 custom_shortcut "Brave" "brave" "<super>b"
+custom_shortcut "Kitty" "kitty" "<super>Return"
+custom_shortcut "Nautilus" "nautilus" "<super>f"
