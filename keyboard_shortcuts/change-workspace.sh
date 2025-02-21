@@ -1,7 +1,7 @@
 #!/bin/bash
 # This script adds GNOME keyboard shortcuts for switching workspaces
 
-# Remove (Super+l) keybind to lock the screen
+# Remove (Super+l) keybind which locked the screen
 remove_lock_keybind(){
   gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver "['']"
   echo "Super+L lock keybind removed."
