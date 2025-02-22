@@ -44,6 +44,8 @@ setup_dotfiles(){
   mkdir -p "$THEMES_DIR"
   mkdir -p "$PICTURES_DIR"
 
+  local folders_to_move=(conky, fish, kitty, i3)
+
   # Move the specific folders to .config if they don't already exist
   for folder in conky fish kitty i3; do
       if [ -d "$TARGET_DIR/$folder" ]; then
