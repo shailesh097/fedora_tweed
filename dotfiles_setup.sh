@@ -44,20 +44,22 @@ setup_dotfiles(){
   mkdir -p "$THEMES_DIR"
   mkdir -p "$PICTURES_DIR"
 
+  local folder_list=("coky" "fish" "kitty" "i3")
+
   # Move the specific folders to .config if they don't already exist
   for folder in conky fish kitty i3; do
-      if [ -d "$TARGET_DIR/$folder" ]; then
-          if [ ! -d "$CONFIG_DIR/$folder" ]; then
-              info "Copying $folder to $CONFIG_DIR"
-              cp -r "$TARGET_DIR/$folder" "$CONFIG_DIR"
+      if [ -d "$TARGET_DIR/${folder[@]}" ]; then
+          if [ ! -d "$CONFIG_DIR/${folder[@]}" ]; then
+              info "Copying ${folder[@]}to $CONFIG_DIR"
+              cp -r "$TARGET_DIR/${folder[@]}" "$CONFIG_DIR"
           else
-              info "$folder already exists in $CONFIG_DIR"
-              warn "Backing up configuration files of $folder to $BACKUP_CONFIGS"
-              mv "$CONFIG_DIR/$folder" "$BACKUP_CONFIGS"
-              cp -r "$TARGET_DIR/$folder" "$CONFIG_DIR"
+              info "${folder[@]}already exists in $CONFIG_DIR"
+              warn "Backing up configuration files of ${folder[@]}to $BACKUP_CONFIGS"
+              mv "$CONFIG_DIR/${folder[@]}" "$BACKUP_CONFIGS"
+              cp -r "$TARGET_DIR/${folder[@]}" "$CONFIG_DIR"
           fi
       else
-          warn "Folder $folder does not exist in $TARGET_DIR. Skipping..."
+          warn "Folder ${folder[@]}does not exist in $TARGET_DIR. Skipping..."
       fi
   done
 

@@ -1,8 +1,10 @@
 #!/bin/bash
 
-clipboard-indicator(){
-  git clone https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator.git ~/.local/share/gnome-shell/extensions/clipboard-indicator@tudmotu.com
-
+loop(){
+  local folder_list=("kitty" "i3" "conky")
+  for folder in ${folder_list[@]}; do 
+    echo "The folder is: $folder"
+  done
 }
 
-clipboard-indicator
+loop
