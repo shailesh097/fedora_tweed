@@ -2,7 +2,7 @@
 
 gnome_keyboard_shortcut(){
 
-  FOLDER="$HOME/git_clone/fedora-gnome-setup/keyboard_shortcuts"  # Change this to your folder name
+  FOLDER="$HOME/git_clone/fedora-gnome-setup/src/keyboard_shortcuts"  # Change this to your folder name
 
   # Ensure the folder exists
   if [ -d "$FOLDER" ]; then

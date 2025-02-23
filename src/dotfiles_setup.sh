@@ -53,13 +53,13 @@ setup_dotfiles(){
               info "Copying ${folder[@]}to $CONFIG_DIR"
               cp -r "$TARGET_DIR/${folder[@]}" "$CONFIG_DIR"
           else
-              info "${folder[@]}already exists in $CONFIG_DIR"
+              info "${folder[@]} already exists in $CONFIG_DIR"
               warn "Backing up configuration files of ${folder[@]}to $BACKUP_CONFIGS"
               mv "$CONFIG_DIR/${folder[@]}" "$BACKUP_CONFIGS"
               cp -r "$TARGET_DIR/${folder[@]}" "$CONFIG_DIR"
           fi
       else
-          warn "Folder ${folder[@]}does not exist in $TARGET_DIR. Skipping..."
+          warn "Folder ${folder[@]} does not exist in $TARGET_DIR. Skipping..."
       fi
   done
 
