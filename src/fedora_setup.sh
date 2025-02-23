@@ -112,7 +112,7 @@ setup_fedora(){
 
 # change wallpaper every 5 minutes
 install_wallpaper_changer(){
-  info "Installing Wallpaper Changer service..."
+  info "Installing Wallpaper Changer Desktop Service..."
   local SERVICES_DIR="$HOME/.config/systemd/user/"
   local SCRIPT_DIR="$HOME/.config/myscripts/"
   mkdir -p "$SERVICES_DIR"
