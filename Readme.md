@@ -43,17 +43,15 @@ Following are the list of things this script does. Also, if you know what you're
 `netspeed`
 `workspace-indicator`
 `coverflow-alt-tab`
+`clipboard-indicaator`
 
 ### Power Profile Modification
 - Turn off screen after 15 minutes of inactivity
 - Disabled automatic suspend
 - Set the power button to do nothing
 
-
-
 ## Requirements
-- A system with Latest Fedora version(recommended)
-- Bash Shell
+- A system with Latest Fedora Gnome version
 
 ## Installation
 ```Bash
