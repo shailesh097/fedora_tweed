@@ -1,6 +1,5 @@
-# Tweed Fedora
+## Tweed Fedora
 
-## Overview
 This is my personal tweaked version of Fedora Linux--Tweed Fedora. Get it! 🤠
 
 This project will help me as I am constantly reinstalling fedora system. The time it takes to setup without this script is immensly shortened. 
