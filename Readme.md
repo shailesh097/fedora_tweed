@@ -42,7 +42,7 @@ Following are the list of things this script does. Also, if you know what you're
 `netspeed`
 `workspace-indicator`
 `coverflow-alt-tab`
-`clipboard-indicaator`
+`clipboard-indicator`
 
 ### Power Profile Modification
 - Turn off screen after 15 minutes of inactivity
