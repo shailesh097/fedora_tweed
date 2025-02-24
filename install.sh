@@ -2,9 +2,7 @@
 
 source color_setup.sh
 source setup_power_profile.sh
-source arch_setup.sh
 source fedora_setup.sh
-source ubuntu_setup.sh
 source dotfiles_setup.sh
 source keyborad_shortcut_setup.sh
 

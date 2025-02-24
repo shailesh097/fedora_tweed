@@ -105,6 +105,7 @@ setup_fedora(){
   fi
 
   # Changin shell to fish
+  info "Changing Shell to fish..."
   chsh -s /usr/bin/fish
 
   completed "Fedora Setup Complete!"
