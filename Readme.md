@@ -55,7 +55,7 @@ Following are the list of things this script does. Also, if you know what you're
 ## Installation
 ```Bash
 git clone https://github.com/shailesh097/fedora_tweed.git
-cd fedora_tweed/src
+cd fedora_tweed
 bash install.sh
 ```
 
