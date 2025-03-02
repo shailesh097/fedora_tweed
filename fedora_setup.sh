@@ -20,6 +20,7 @@ setup_fedora(){
   #update the system
   sudo dnf update -y
   completed "System Updated"
+  sleep 1
 
   #enable rpm fusion repository
   info "Enabling RPM Fusion repositories..."
@@ -35,6 +36,7 @@ setup_fedora(){
   #install eDM Mononstall curl wget git neovim fzf conky kitty fish nvtop btop
   info "Installing Essential Tools..."
   sudo dnf install -y curl wget git neovim fzf conky kitty fish nvtop btop fastfetch npm eza gnome-tweaks gnome-shell-extensions discord vlc gparted bash
+  sleep 2
 
   # Set Catppuccin-Mocha theme for kitty
   info "Setting Catppuccin-Mocha theme for kitty..."
@@ -130,6 +132,7 @@ install_nvidia_drivers(){
   info "Installing Nvidia Driver"
   sudo dnf update -y
   sudo dnf install -y akmod-nvidia
+  sleep 1
   info "NVIDIA drivers installed successfully!"
   info "A reboot is required to load the NVIDIA drivers"
   info "Close all the files and reboot your system"
