@@ -47,7 +47,7 @@ setup_dotfiles(){
   local folder_list=("coky" "fish" "kitty" "i3")
 
   # Move the specific folders to .config if they don't already exist
-  for folder in conky fish kitty i3; do
+  for folder in conky fish kitty i3 fastfetch; do
       if [ -d "$TARGET_DIR/${folder[@]}" ]; then
           if [ ! -d "$CONFIG_DIR/${folder[@]}" ]; then
               info "Copying ${folder[@]}to $CONFIG_DIR"
