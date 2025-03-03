@@ -7,10 +7,10 @@ remove_lock_keybind(){
 }
 
 change_workspace(){
-  # Set Super+[ to switch to the workspace on the left
+  # Set Super+j to switch to the workspace on the left
   gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Super>j']"
 
-  # Set Super+] to switch to the workspace on the right
+  # Set Super+l to switch to the workspace on the right
   gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Super>l']"
 
   # Set new keybindings to move the current window to the workspace to the left and right
