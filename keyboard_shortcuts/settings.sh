@@ -1,7 +1,6 @@
 #!/bin/bash
 # This script adds a custom GNOME keyboard shortcut to launch kitty
 # Shortcut: Super+Return
-source keyboard_shortcuts/custom-shortcut.sh
 
 remove_quick_settings_shortcut(){
   # Define the schema and keybinding path

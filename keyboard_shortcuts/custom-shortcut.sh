@@ -28,7 +28,7 @@ custom_shortcut(){
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:"$KEYBINDING_PATH" command "$KEYBINDING_COMMAND"
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:"$KEYBINDING_PATH" binding "$KEYBINDING_BINDING"
 
-  echo " - $KEYBINDING_BINDING set to launch $KEYBINDING_NAME"
+  info " - $KEYBINDING_BINDING set to launch $KEYBINDING_NAME"
 }
 
 custom_shortcut "Brave" "brave" "<super>b"

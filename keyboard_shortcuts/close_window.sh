@@ -11,7 +11,7 @@ close_window(){
   # Set the new shortcut
   gsettings set $SCHEMA $KEY "['$NEW_SHORTCUT']"
 
-  echo " - Shortcut for closing windows changed to $NEW_SHORTCUT"
+  info " - Shortcut for closing windows changed to $NEW_SHORTCUT"
 }
 
 close_window
