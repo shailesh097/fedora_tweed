@@ -54,7 +54,7 @@ setup_dotfiles(){
               cp -r "$TARGET_DIR/${folder[@]}" "$CONFIG_DIR"
           else
               info "${folder[@]} already exists in $CONFIG_DIR"
-              warn "Backing up configuration files of ${folder[@]}to $BACKUP_CONFIGS"
+              warn "Backing up configuration files of ${folder[@]} to $BACKUP_CONFIGS"
               mv "$CONFIG_DIR/${folder[@]}" "$BACKUP_CONFIGS"
               cp -r "$TARGET_DIR/${folder[@]}" "$CONFIG_DIR"
           fi

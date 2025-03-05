@@ -94,6 +94,7 @@ setup_fedora(){
   install_wallpaper_changer
 
   # Setup Keyboard Shortcuts
+  info "Setting up Keyboard Shortcuts..."
   gnome_keyboard_shortcut
 
   # Install Nvidia Drivers

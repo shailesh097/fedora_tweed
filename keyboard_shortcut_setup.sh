@@ -15,4 +15,3 @@ gnome_keyboard_shortcut(){
   fi
 }
 
-gnome_keyboard_shortcut

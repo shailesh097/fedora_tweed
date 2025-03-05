@@ -4,7 +4,7 @@ source color_setup.sh
 source setup_power_profile.sh
 source fedora_setup.sh
 source dotfiles_setup.sh
-source keyborad_shortcut_setup.sh
+source keyboard_shortcut_setup.sh
 
 
 # Check the type of OS
