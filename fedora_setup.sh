@@ -93,6 +93,9 @@ setup_fedora(){
   # Setup wallpaper changer
   install_wallpaper_changer
 
+  # Setup dotfiles sync
+  install_dotfiles_sync
+
   # Setup Keyboard Shortcuts
   info "Setting up Keyboard Shortcuts..."
   gnome_keyboard_shortcut
@@ -114,6 +117,19 @@ setup_fedora(){
   completed "Fedora Setup Complete!"
 }
 
+# install dotfiles sync
+install_dotfiles_sync(){
+  info "Installing dotfiles syncing script..."
+  
+  local BIN_SCRIPT_DIR="$HOME/git_clone/fedora_tweed/bins/dotfiles_sync.sh"
+  local BIN_DIR="$HOME/.local/bin"
+
+  mkdir -p $BIN_DIR
+  chmod +x "$BIN_SCRIPT_DIR" 
+
+  cp "$BIN_SCRIPT_DIR" "$BIN_DIR"
+}
+
 # change wallpaper every 5 minutes
 install_wallpaper_changer(){
   info "Installing Wallpaper Changer Desktop Service..."
@@ -130,7 +146,7 @@ install_wallpaper_changer(){
 
 # functionto install nvidia drivers for fedora
 install_nvidia_drivers(){
-  info "Installing Nvidia Driver"
+  info "Installing Nvidia Driver..."
   sudo dnf update -y
   sudo dnf install -y akmod-nvidia
   sleep 1
@@ -138,7 +154,6 @@ install_nvidia_drivers(){
   info "A reboot is required to load the NVIDIA drivers"
   info "Close all the files and reboot your system"
 }
-
 
 # function to install sublime text 4
 install_sublimetext4(){

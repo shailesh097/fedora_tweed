@@ -1,1 +1,4 @@
 test-script.sh
+
+bins/*
+!bins/dotfiles_sync.sh
