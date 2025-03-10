@@ -63,45 +63,39 @@ sync_dotfiles(){
   mkdir -p $FONTS_DES
   mkdir -p $FONTS_SRC
 
-  if [ -d "$FONTS_SRC" ]; then
-    if [ -d "$FONTS_DES" ]; then
-      info "Syncing fonts..."
-      rsync -av --delete "$FONTS_SRC/" "$FONTS_DES/"
-    else
-      warn "Directory $FONTS_DES does not exist, skipping fonts sync..."
-    fi
-  else
+  if [ ! -d "$FONTS_SRC" ]; then
     warn "Directory $FONTS_SRC does not exist, skipping fonts sync..."
+  elif [ ! -d "$FONTS_DES" ]; then
+    warn "Directory $FONTS_DES does not exist, skipping fonts sync..."
+  else
+    info "Syncing fonts..."
+    rsync -av --delete "$FONTS_SRC/" "$FONTS_DES/"
   fi
 
   # sync ~/Pictures/wallpapers/ to ~/dotfiles/wallpapers/
   local WALLPAPER_SRC="$HOME/Pictures/wallpapers"
   local WALLPAPER_DES="$HOME/dotfiles/wallpapers"
 
-  if [ -d "$WALLPAPER_SRC" ]; then
-    if [ -d "$WALLPAPER_DES" ]; then
-      info "Syncing wallpapers..."
-      rsync -av --delete "$WALLPAPER_SRC/" "$WALLPAPER_DES/"
-    else
-      info "Directory $WALLPAPER_DES does not exist, skipping wallpapers sync..."
-    fi
+  if [ ! -d "$WALLPAPER_SRC" ]; then
+    warn "Directory $WALLPAPER_SRC does not exist, skipping wallpapers sync..."
+  elif [ ! -d "$WALLPAPER_DES" ]; then
+    info "Directory $WALLPAPER_DES does not exist, skipping wallpapers sync..."
   else
-    warn "Directory $WALLPAPER_SRC does not exist, skipping wallpapers sync..." 
+    info "Syncing wallpapers..."
+    rsync -av --delete "$WALLPAPER_SRC/" "$WALLPAPER_DES/"
   fi
 
   # Sync starship.toml file from ~/.config to ~/dotfiles
   local STARSHIP_SRC="$CONFIG_DIR/starship.toml"
   local STARSHIP_DEST="$DOTFILES_DIR/starship.toml"
 
-  if [ -f "$STARSHIP_SRC" ]; then
-    if [ -f "$STARSHIP_DEST" ]; then
-      info "Syncing starship.toml..."
-      cp "$STARSHIP_SRC" "$STARSHIP_DEST"
-    else
-      warn "File $STARSHIP_DEST does not exist, skipping starship.toml sync..."
-    fi
+  if [ ! -f "$STARSHIP_SRC" ]; then
+    warn "File $STARSHIP_SRC does not exist, skipping starship.toml sync..."
+  elif [ ! -f "$STARSHIP_DEST" ]; then
+    warn "File $STARSHIP_DEST does not exist, skipping starship.toml sync..."
   else
-      warn "File $STARSHIP_SRC does not exist, skipping starship.toml sync..."
+    info "Syncing starship.toml..."
+    cp "$STARSHIP_SRC" "$STARSHIP_DEST"
   fi
 
   completed "Sync complete."
