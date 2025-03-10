@@ -1,4 +1,4 @@
-test-script.sh
+test_script.sh
 
 bins/*
 !bins/dotfiles_sync.sh
