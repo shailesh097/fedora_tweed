@@ -100,19 +100,12 @@ setup_fedora(){
   info "Setting up Keyboard Shortcuts..."
   gnome_keyboard_shortcut
 
-  # Install Nvidia Drivers
-  install_nvidia_drivers
-
-    read -p "Do you want to reboot now? (y/n): " REBOOT
-  if [[ "$REBOOT" == "y" || "$REBOOT" == "Y" ]]; then
-      sudo reboot
-  else
-      info "Please reboot your system later to apply the changes."
-  fi
-
   # Changin shell to fish
   info "Changing Shell to fish..."
   chsh -s /usr/bin/fish
+
+  # Install Nvidia Drivers
+  install_nvidia_drivers
 
   completed "Fedora Setup Complete!"
 }
@@ -132,7 +125,7 @@ install_dotfiles_sync(){
 
 # change wallpaper every 5 minutes
 install_wallpaper_changer(){
-  info "Installing Wallpaper Changer Desktop Service..."
+  info "Installing Desktop Wallpaper Changer Service..."
   local SERVICES_DIR="$HOME/.config/systemd/user/"
   local SCRIPT_DIR="$HOME/.config/myscripts/"
   mkdir -p "$SERVICES_DIR"
@@ -153,6 +146,13 @@ install_nvidia_drivers(){
   info "NVIDIA drivers installed successfully!"
   info "A reboot is required to load the NVIDIA drivers"
   info "Close all the files and reboot your system"
+
+  read -p "Do you want to reboot now? (y/n): " REBOOT
+  if [[ "$REBOOT" == "y" || "$REBOOT" == "Y" ]]; then
+      sudo reboot
+  else
+      info "Please reboot your system later to apply the changes."
+  fi
 }
 
 # function to install sublime text 4

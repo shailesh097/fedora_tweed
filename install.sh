@@ -24,7 +24,7 @@ check_os_type(){
           exit 1
       fi
   else
-      error "Unable to detect the operating system."
+      error "Unable to detect the linux distribution"
       exit 1
   fi
 }
