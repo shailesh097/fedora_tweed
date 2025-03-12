@@ -14,7 +14,7 @@ CYAN="$(tput setaf 37 2>/dev/null || printf '')"
 
 
 info() {
-  printf '%s\n' "${CYAN}>>> $* ${NO_COLOR} "
+  printf '%s\n' "${CYAN}==> $* ${NO_COLOR} "
 }
 
 warn() {
@@ -25,12 +25,12 @@ error() {
   printf '%s\n' "${RED}x $*${NO_COLOR}" >&2
 }
 
-completed() {
+message() {
   printf '%s\n' "${GREEN}✓ $* ${NO_COLOR} "
 }
 
 sync_dotfiles(){
-  info "Syncing dotfiles..."
+  message "Syncing dotfiles..."
   # Define source and destination directories
   local CONFIG_DIR="$HOME/.config"
   local DOTFILES_DIR="$HOME/dotfiles"
@@ -49,7 +49,7 @@ sync_dotfiles(){
           # The trailing slash on the source ensures the contents are copied into the destination directory.
           rsync -av --delete "$SRC_PATH/" "$DEST_PATH/"
         else
-          warn "Directory $DEST_PATH does not exist, skipping syncing $folder"
+          warn "\nDirectory $DEST_PATH does not exist, skipping syncing $folder"
         fi
       else
           warn "Directory $SRC_PATH does not exist, skipping syncing $folder..."
@@ -98,7 +98,7 @@ sync_dotfiles(){
     cp "$STARSHIP_SRC" "$STARSHIP_DEST"
   fi
 
-  completed "Sync complete."
+  message "Sync complete."
 }
 
 sync_dotfiles

@@ -117,6 +117,13 @@ install_dotfiles_sync(){
   local BIN_FILE="$HOME/git_clone/fedora_tweed/bins/sync-dotfiles"
   local BIN_DIR="$HOME/.local/bin"
   mkdir -p $BIN_DIR
+
+  # check if binary file is already present in path variable
+  if [[ -f $BIN_DIR/sync-dotfiles ]]; then
+    warn "sync-dotfiles binary already present at $BIN_DIR. Removing sync-dotfiles binary..."
+    rm "$BIN_DIR/sync-dotfiles"
+  fi
+
   chmod +x "$BIN_SCRIPT"
   # compile $BIN_SCRIPT
   shc -f $BIN_SCRIPT -o "$BIN_FILE"

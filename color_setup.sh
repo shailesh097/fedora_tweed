@@ -14,7 +14,7 @@ CYAN="$(tput setaf 37 2>/dev/null || printf '')"
 
 
 info() {
-  printf '%s\n' "${CYAN}>>> $* ${NO_COLOR} "
+  printf '%s\n' "${CYAN}==> $* ${NO_COLOR} "
 }
 
 warn() {
