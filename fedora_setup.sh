@@ -20,7 +20,7 @@ setup_fedora(){
 
   #update the system
   sudo dnf update -y
-  message "System Updated"
+  message "System Updated!"
   sleep 1
 
   #enable rpm fusion repository
@@ -42,6 +42,10 @@ setup_fedora(){
   # Set Catppuccin-Mocha theme for kitty
   info "Setting Catppuccin-Mocha theme for kitty..."
   kitty +kitten themes Catppuccin-Mocha
+
+  # Installing gnome-shell-extensions
+  message "Installing Gnome Shell Extensions..."
+  gnome-shell-extensions
 
   #configure git
   info "Configuring git..."
@@ -208,9 +212,7 @@ install_vscode(){
   sudo dnf check-update
   sudo dnf install -y code
 
-  if [ $? -eq 0 ]; then
-      message "Visual Studio Code installed successfully!"
-  else
+  if [ ! $? -eq 0 ]; then
       error "Failed to install Visual Studio Code. Please check your internet connection or repository setup."
       exit 1
   fi

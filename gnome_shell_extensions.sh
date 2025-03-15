@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gnome_shell_extensions(){
+gnome-shell-extensions(){
   dash-to-dock
   user-theme
   blur-my-shell
@@ -111,5 +111,3 @@ dash-to-dock(){
   # Clean up downloaded zip file
   rm dash-to-dock@micxgx.gmail.com.zip
 }
-
-gnome_shell_extensions

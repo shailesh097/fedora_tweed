@@ -5,6 +5,7 @@ source setup_power_profile.sh
 source fedora_setup.sh
 source dotfiles_setup.sh
 source keyboard_shortcut_setup.sh
+source gnome_shell_extensions.sh
 
 
 # Check the type of OS
