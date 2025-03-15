@@ -25,6 +25,6 @@ error() {
   printf '%s\n' "${RED}x $*${NO_COLOR}" >&2
 }
 
-completed() {
+message() {
   printf '%s\n' "${GREEN}✓ $* ${NO_COLOR} "
 }

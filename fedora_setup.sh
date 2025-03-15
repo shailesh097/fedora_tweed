@@ -11,15 +11,16 @@ setup_fedora(){
   if ! grep -q "^max_parallel_downloads=10" /etc/dnf/dnf.conf; then
     echo "max_parallel_downloads=10" | sudo tee -a /etc/dnf/dnf.conf > /dev/null
   fi
-  
+
   info "Setting up Fedora system..."
+
 
   # Setup power profile for gnome system
   setup_power_gnome
 
   #update the system
   sudo dnf update -y
-  completed "System Updated"
+  message "System Updated"
   sleep 1
 
   #enable rpm fusion repository
@@ -107,7 +108,7 @@ setup_fedora(){
   # Install Nvidia Drivers
   install_nvidia_drivers
 
-  completed "Fedora Setup Complete!"
+  message "Fedora Setup Complete!"
 }
 
 # install dotfiles sync
@@ -137,8 +138,8 @@ install_wallpaper_changer(){
   local SCRIPT_DIR="$HOME/.config/myscripts/"
   mkdir -p "$SERVICES_DIR"
   mkdir -p "$SCRIPT_DIR"
-  cp "$HOME/git_clone/fedora-gnome-setup/services/wallpaper-changed.service" "$SERVICES_DIR" 
-  cp "$HOME/git_clone/fedora-gnome-setup/dynamic_wallpaper.sh" "$SCRIPT_DIR"
+  cp "$HOME/git_clone/fedora_tweed/services/wallpaper-changed.service" "$SERVICES_DIR" 
+  cp "$HOME/git_clone/fedora_tweed/dynamic_wallpaper.sh" "$SCRIPT_DIR"
   systemctl --user daemon-reload
   systemctl --user enable wallpaper-changed.service
   systemctl --user start wallpaper-changed.service
@@ -162,7 +163,7 @@ install_nvidia_drivers(){
   fi
 }
 
-# function to install sublime text 4
+# function o install sublime text 4
 install_sublimetext4(){
 
   info "Installing Sublime Text 4..."
@@ -208,7 +209,7 @@ install_vscode(){
   sudo dnf install -y code
 
   if [ $? -eq 0 ]; then
-      completed "Visual Studio Code installed successfully!"
+      message "Visual Studio Code installed successfully!"
   else
       error "Failed to install Visual Studio Code. Please check your internet connection or repository setup."
       exit 1

@@ -97,7 +97,7 @@ setup_dotfiles(){
       warn "starship.toml file does not exist in $TARGET_DIR. Skipping..."
   fi
 
-  completed "Dotfiles setup complete!"
+  message "Dotfiles setup complete!"
 }
 
 
