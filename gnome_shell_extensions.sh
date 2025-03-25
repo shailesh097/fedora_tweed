@@ -25,8 +25,8 @@ coverflow-alt-tab(){
   mkdir -p "$UNZIP_DIR"
 
   # Download CoverflowAltTab version 76
-  wget https://github.com/dsheeler/CoverflowAltTab/archive/refs/tags/v76.zip
-  unzip v76.zip -d "$UNZIP_DIR"
+  wget -P $HOME/git_clone/ https://github.com/dsheeler/CoverflowAltTab/archive/refs/tags/v76.zip
+  unzip $HOME/git_clone/v76.zip -d "$UNZIP_DIR"
   make -C "$UNZIP_DIR/CoverflowAltTab-76"
 
   # Cleanup installed files
