@@ -2,3 +2,4 @@ test_script.sh
 
 bins/*
 !bins/dotfiles_sync.sh
+!bins/nvim_sync.sh
