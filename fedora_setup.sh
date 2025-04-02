@@ -13,6 +13,7 @@ setup_fedora(){
   fi
 
   info "Setting up Fedora system..."
+  info "Created Workspace directory at $HOME/Workspace/"
   mkdir -p $HOME/Workspace
 
   # Setup power profile for gnome system
@@ -36,7 +37,7 @@ setup_fedora(){
 
   #install eDM Mononstall curl wget git neovim fzf conky kitty fish nvtop btop
   info "Installing Essential Tools..."
-  sudo dnf install -y curl wget git neovim fzf conky kitty fish nvtop btop fastfetch npm eza gnome-tweaks discord vlc gparted bash shc --skip-unavailable
+  sudo dnf install -y curl wget git neovim fzf conky kitty fish nvtop btop fastfetch npm eza gnome-tweaks discord vlc gparted bash shc zoxide --skip-unavailable
 
   # Set Catppuccin-Mocha theme for kitty
   info "Setting Catppuccin-Mocha theme for kitty..."

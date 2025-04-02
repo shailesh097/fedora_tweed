@@ -14,17 +14,17 @@ CYAN="$(tput setaf 37 2>/dev/null || printf '')"
 
 
 info() {
-  printf '%s\n' "${CYAN}==> $* ${NO_COLOR} "
+	printf '%s\n' "${CYAN}==> $* ${NO_COLOR} "
 }
 
 warn() {
-  printf '%s\n' "${YELLOW}! $*${NO_COLOR}"
+	printf '%s\n' "${YELLOW}! $*${NO_COLOR}"
 }
 
 error() {
-  printf '%s\n' "${RED}x $*${NO_COLOR}" >&2
+	printf '%s\n' "${RED}x $*${NO_COLOR}" >&2
 }
 
 message() {
-  printf '%s\n' "${GREEN}✓ $* ${NO_COLOR} "
+	printf '%s\n' "${GREEN} $* ${NO_COLOR} "
 }
