@@ -3,7 +3,7 @@
 # Change the wallpaper after a certain interval from a directory
 change_wallpaper(){
     WALLPAPER_DIR="$HOME/Pictures/wallpapers"
-    INTERVAL=2
+    INTERVAL=300
     
     # Get the list of wallpapers
     mapfile -t WALLPAPERS < <(find "$WALLPAPER_DIR" -type f | sort)
