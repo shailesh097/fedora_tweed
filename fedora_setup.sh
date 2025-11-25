@@ -37,7 +37,7 @@ setup_fedora(){
 
   #install eDM Mononstall curl wget git neovim fzf conky kitty fish nvtop btop
   info "Installing Essential Tools..."
-  sudo dnf install -y curl wget git neovim fzf conky kitty fish nvtop btop fastfetch npm eza gnome-tweaks discord vlc gparted bash shc zoxide tldr xdotool --skip-unavailable
+  sudo dnf install -y curl wget git neovim fzf conky kitty fish nvtop btop fastfetch npm gnome-tweaks discord vlc gparted bash shc zoxide tldr xdotool --skip-unavailable
 
   # Set Catppuccin-Mocha theme for kitty
   info "Setting Catppuccin-Mocha theme for kitty..."
