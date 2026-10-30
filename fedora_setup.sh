@@ -61,6 +61,18 @@ setup_fedora(){
   info "Installing ExtensionManager..."
   flatpak install -y flathub com.mattjakeman.ExtensionManager
 
+  # Install Spotify
+  info "Installing Spotify via Flatpak..."
+  flatpak install -y flathub com.spotify.Client
+
+  # Install ART
+  info "Installing ART via Flatpak..."
+  flatpak install flathub us.pixls.art.ART
+
+  # Install Localsend
+  info "Installing Localsend..."
+  flatpak install flathub org.localsend.localsend_app
+
   #setup dotfiles from github
   setup_dotfiles
 
@@ -82,11 +94,6 @@ setup_fedora(){
   # Install Obsidian
   info "Installing Obsidian via Flatpak..."
   flatpak install -y flathub md.obsidian.Obsidian
-
-  # Install Flatpak
-  info "Installing Spotify via Flatpak..."
-  flatpak install -y flathub com.spotify.Client
-
   info "Installing X11..."
   sudo dnf install -y gnome-session-xsession
   sudo dnf install -y gnome-classic-session-xsession
