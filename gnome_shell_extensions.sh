@@ -3,11 +3,8 @@
 gnome-shell-extensions(){
   dash-to-dock
   user-theme
-  blur-my-shell
-  search-light
   caffeine
   appindicator
-  netspeed
   workspace-indicator
   coverflow-alt-tab
   clipboard-indicator
@@ -46,11 +43,6 @@ workspace-indicator(){
   sudo dnf install -y gnome-shell-extension-workspace-indicator
 }
 
-# Install netspeed
-netspeed(){
-  info "Installing Gnome Shell Extension: Netspeed..." 
-  git clone https://github.com/AlynxZhou/gnome-shell-extension-net-speed.git ~/.local/share/gnome-shell/extensions/netspeed@alynx.one
-}
 
 # Install appindicator
 appindicator(){
@@ -68,12 +60,6 @@ caffeine(){
 user-theme(){
   info "Installing Gnome Shell Extension: User Theme..."
   sudo dnf install -y gnome-shell-extension-user-theme
-}
-
-# Install blur my shell
-blur-my-shell(){
-  info "Installing Gnome Shell Extension: Blur My Shell..."
-  sudo dnf install -y gnome-shell-extension-blur-my-shell
 }
 
 # Install search light
