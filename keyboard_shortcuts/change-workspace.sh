@@ -2,16 +2,16 @@
 # This script adds GNOME keyboard shortcuts for switching workspaces
 
 # Remove (Super+l) keybind which locked the screen
-remove_lock_keybind(){
-  gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver "['']"
-}
+# remove_lock_keybind(){
+#   gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver "['']"
+# }
 
 change_workspace(){
   # Set Super+j to switch to the workspace on the left
-  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Super>h']"
+  # gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Super>h']"
 
   # Set Super+l to switch to the workspace on the right
-  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Super>l']"
+  # gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Super>l']"
 
   # Set new keybindings to move the current window to the workspace to the left and right
   gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "['<Shift><Super>h']"
